@@ -23,6 +23,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let missileCategory: UInt32 = 0b0010
     let enemyCategory: UInt32 = 0b0100
     
+    var lifeLabelNode = SKLabelNode()
+    var scoreLabelNode = SKLabelNode()
+    
+    var life: Int = 0 {
+        didSet {
+            self.lifeLabelNode.text = "LIFE: \(life)"
+        }
+    }
+    
+    var score: Int = 0 {
+        didSet {
+            self.scoreLabelNode.text = "SCORE: \(score)"
+        }
+    }
+    
     override func didMove(to view: SKView) {
         var sizeRate: CGFloat = 0.0
         var myShipSize = CGSize(width: 0.0, height: -1.0)
@@ -60,6 +75,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.accelarationX = CGFloat(acc.x)
             print(acc.x)
         }
+        
+        self.life = 3
+        self.lifeLabelNode.fontName = "HelveticaNeue-Bold"
+        self.lifeLabelNode.fontColor = UIColor.white
+        self.lifeLabelNode.fontSize = 30
+        self.lifeLabelNode.position = CGPoint(x: frame.width / 2 - (self.lifeLabelNode.frame.width + 20),
+                                              y: frame.height / 2 - self.lifeLabelNode.frame.height * 3)
+        addChild(self.lifeLabelNode)
+        
+        self.score = 0
+        self.lifeLabelNode.fontName = "HelveticaNeue-Bold"
+        self.scoreLabelNode.fontColor = UIColor.white
+        self.scoreLabelNode.fontSize = 30
+        self.scoreLabelNode.position = CGPoint(x: -frame.width / 2 + self.scoreLabelNode.frame.width,
+                                               y: frame.height / 2 - self.scoreLabelNode.frame.height * 3)
+        addChild(self.scoreLabelNode)
     }
     
     override func didSimulatePhysics() {
