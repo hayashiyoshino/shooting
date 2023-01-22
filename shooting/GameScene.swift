@@ -10,6 +10,8 @@ import GameplayKit
 import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    var vc: GameViewController!
+    
     var myShip = SKSpriteNode()
     
     var enemyRate: CGFloat = 0.0
@@ -147,9 +149,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.run(SKAction.wait(forDuration: 0.5)) {
             explosion?.removeFromParent()
         }
+        
+        if contact.bodyA.categoryBitMask == missileCategory ||
+            contact.bodyB.categoryBitMask == missileCategory {
+            self.score += 10
+        }
+        
+        if contact.bodyA.categoryBitMask == myShipCategory ||
+            contact.bodyB.categoryBitMask == myShipCategory {
+            self.life -= 1
+            
+            self.run(SKAction.wait(forDuration: 1)) {
+                self.restart()
+            }
+        }
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        <#code#>
-//    }
+    func restart() {
+        if self.life <= 0 {
+            vc.dismiss(animated: true, completion: nil)
+        }
+        
+        addChild(self.myShip)
+    }
 }
