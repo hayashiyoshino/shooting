@@ -139,11 +139,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        let explosion = SKEmitterNode(fileNamed: "explosion")
+        explosion?.position = contact.bodyA.node?.position ?? CGPoint(x: 0, y: 0)
+        
         contact.bodyA.node?.removeFromParent()
         contact.bodyB.node?.removeFromParent()
         
-        let explosion = SKEmitterNode(fileNamed: "explosion")
-        explosion?.position = contact.bodyA.node?.position ?? CGPoint(x: 0, y: 0)
         addChild(explosion!)
         
         self.run(SKAction.wait(forDuration: 0.5)) {
