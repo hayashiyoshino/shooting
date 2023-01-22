@@ -15,6 +15,7 @@
 		5998628E297CCA7900FE34E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5998628C297CCA7900FE34E4 /* Main.storyboard */; };
 		59986290297CCA7A00FE34E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5998628F297CCA7A00FE34E4 /* Assets.xcassets */; };
 		59986293297CCA7A00FE34E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59986291297CCA7A00FE34E4 /* LaunchScreen.storyboard */; };
+		5998629A297D3C9C00FE34E4 /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 59986299297D3C9C00FE34E4 /* explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		5998628D297CCA7900FE34E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5998628F297CCA7A00FE34E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59986292297CCA7A00FE34E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		59986299297D3C9C00FE34E4 /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				59986284297CCA7900FE34E4 /* GameScene.sks */,
 				59986286297CCA7900FE34E4 /* Actions.sks */,
 				59986288297CCA7900FE34E4 /* GameScene.swift */,
+				59986299297D3C9C00FE34E4 /* explosion.sks */,
 				5998628A297CCA7900FE34E4 /* GameViewController.swift */,
 				5998628C297CCA7900FE34E4 /* Main.storyboard */,
 				5998628F297CCA7A00FE34E4 /* Assets.xcassets */,
@@ -132,6 +135,7 @@
 				5998628E297CCA7900FE34E4 /* Main.storyboard in Resources */,
 				59986285297CCA7900FE34E4 /* GameScene.sks in Resources */,
 				59986290297CCA7A00FE34E4 /* Assets.xcassets in Resources */,
+				5998629A297D3C9C00FE34E4 /* explosion.sks in Resources */,
 				59986293297CCA7A00FE34E4 /* LaunchScreen.storyboard in Resources */,
 				59986287297CCA7900FE34E4 /* Actions.sks in Resources */,
 			);

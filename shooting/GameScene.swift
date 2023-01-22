@@ -9,7 +9,7 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     var myShip = SKSpriteNode()
     
     var enemyRate: CGFloat = 0.0
@@ -29,6 +29,10 @@ class GameScene: SKScene {
         let offsetY = frame.height / 20
         
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        physicsWorld.contactDelegate = self
+        
+        self.myShip.physicsBody?.contactTestBitMask = self.enemyCategory
+        self.myShip.physicsBody?.isDynamic = true
         
         self.myShip = SKSpriteNode(imageNamed: "myShip")
         sizeRate = (frame.width / 5) / self.myShip.size.width
@@ -73,6 +77,7 @@ class GameScene: SKScene {
         missile.physicsBody = SKPhysicsBody(rectangleOf: missile.size)
         missile.physicsBody?.categoryBitMask = self.missileCategory
         missile.physicsBody?.collisionBitMask = self.enemyCategory
+        missile.physicsBody?.contactTestBitMask = self.enemyCategory
         missile.physicsBody?.isDynamic = true
         addChild(missile)
         
@@ -98,6 +103,19 @@ class GameScene: SKScene {
         let move = SKAction.moveTo(y: -frame.height / 2, duration: 2.0)
         let remove = SKAction.removeFromParent()
         enemy.run(SKAction.sequence([move, remove]))
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        contact.bodyA.node?.removeFromParent()
+        contact.bodyB.node?.removeFromParent()
+        
+        let explosion = SKEmitterNode(fileNamed: "explosion")
+        explosion?.position = contact.bodyA.node?.position ?? CGPoint(x: 0, y: 0)
+        addChild(explosion!)
+        
+        self.run(SKAction.wait(forDuration: 0.5)) {
+            explosion?.removeFromParent()
+        }
     }
     
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
